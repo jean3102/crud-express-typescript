@@ -8,10 +8,11 @@ export class EmployeesModel {
 	}
 
 	insertEmployee(employee: EmployeesInterface['InsertEmployee']): boolean {
+		const employeeLength = employeesData.length;
 		const lastId = generateId(employeesData);
 		const newEmployee = { id: lastId, ...employee, status: true };
-		employeesData.push(newEmployee);
-		return true;
+		let isInsert = employeesData.push(newEmployee);
+		return isInsert > employeeLength; //check if insert already
 	}
 
 	setDeleteEmployee(id: number): boolean {

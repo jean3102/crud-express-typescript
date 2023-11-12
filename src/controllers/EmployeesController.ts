@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { EmployeesModel } from '../models/EmployeesModel';
-import { isObjectNotEmpty } from '../helpers/employees';
 
 export class EmployeesController extends EmployeesModel {
 	getEmployees(req: Request, res: Response) {
@@ -11,14 +10,8 @@ export class EmployeesController extends EmployeesModel {
 	}
 
 	addEmployees(req: Request, res: Response) {
-		const newEmployee = req.body;
-
-		if (!isObjectNotEmpty(newEmployee)) {
-			return res.status(400).send('Error receiving employee');
-		}
-
 		const result = super.insertEmployee(req.body);
-		if (!result) return res.status(400).send('error');
+		if (!result) return res.status(400).send('error trying to add employee');
 		res.status(200).send('created');
 	}
 
@@ -27,8 +20,8 @@ export class EmployeesController extends EmployeesModel {
 	}
 
 	deleteEmployees(req: Request, res: Response) {
-		const employeeId = req.params.id
-		if(!employeeId) res.status(400).send('Error receiving employee id');
+		const employeeId = req.params.id;
+		if (!employeeId) res.status(400).send('Error receiving employee id');
 		super.setDeleteEmployee(Number(req.params.id));
 		res.status(200).send('deleted');
 	}

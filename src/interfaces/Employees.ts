@@ -1,14 +1,16 @@
 interface Employee {
 	id: number;
-	name: string;
+	firstName: string;
 	lastName: string;
+	userName: string;
 	salary: number;
-	status: boolean;
 }
 
 type InsertEmployee = Omit<Employee, 'id'>;
+type UpdateEmployee = Omit<Employee, 'id' | 'userName'>;
 
 export interface EmployeesInterface {
 	Employee: Employee;
 	InsertEmployee: InsertEmployee;
+	UpdateEmployee: UpdateEmployee;
 }

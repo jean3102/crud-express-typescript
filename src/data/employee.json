@@ -1,16 +1,16 @@
 [
     {
         "id": 1,
-        "name": "jean",
+        "firstName": "jean",
         "lastName": "luciano",
-        "salary": 5600,
-        "status": true
+        "userName": "jean3102",
+        "salary": 5600
     },
     {
         "id": 2,
-        "name": "haly",
+        "firstName": "haly",
         "lastName": "marte",
-        "salary": 4500,
-        "status": false
+        "userName": "haly02",
+        "salary": 4500
     }
 ]

@@ -10,9 +10,21 @@ export class EmployeesModel {
 	insertEmployee(employee: EmployeesInterface['InsertEmployee']): boolean {
 		const employeeLength = employeesData.length;
 		const lastId = generateId(employeesData);
-		const newEmployee = { id: lastId, ...employee, status: true };
+		const newEmployee = { id: lastId, ...employee };
 		let isInsert = employeesData.push(newEmployee);
 		return isInsert > employeeLength; //check if insert already
+	}
+
+	updateEmployee(
+		id: number,
+		data: EmployeesInterface['UpdateEmployee']
+	): boolean {
+		const findIndex = employeesData.findIndex((employee) => employee.id === id);
+		if (findIndex === -1) return false; // return false if the employee is not found
+
+		// This allows for updating specific properties of the employee without modifying the rest of the employee object
+		employeesData[findIndex] = { ...employeesData[findIndex], ...data };
+		return true;
 	}
 
 	setDeleteEmployee(id: number): boolean {

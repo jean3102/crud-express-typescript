@@ -11,7 +11,7 @@ export class EmployeesModel {
 		const employeeLength = employeesData.length;
 		const lastId = generateId(employeesData);
 		const newEmployee = { id: lastId, ...employee };
-		let isInsert = employeesData.push(newEmployee);
+		const isInsert = employeesData.push(newEmployee);
 		return isInsert > employeeLength; //check if insert already
 	}
 
@@ -28,8 +28,11 @@ export class EmployeesModel {
 	}
 
 	setDeleteEmployee(id: number): boolean {
-		const employees = employeesData.findIndex((employee) => employee.id === id);
-		employeesData.splice(employees, 1);
+		const findIndex = employeesData.findIndex((employee) => employee.id === id);
+		if (findIndex === -1) return false; // return false if the employee is not found
+
+		// deletes the employee with the specified `id` from the employeesData
+		employeesData.splice(findIndex, 1);
 		return true;
 	}
 }

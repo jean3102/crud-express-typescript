@@ -31,7 +31,8 @@ export class EmployeesController extends EmployeesModel {
 	deleteEmployees(req: Request, res: Response) {
 		const employeeId = req.params.id;
 		if (!employeeId) res.status(400).send('Error receiving employee id');
-		super.setDeleteEmployee(Number(req.params.id));
+		const result = super.setDeleteEmployee(Number(req.params.id));
+		if (!result) return res.status(400).send('error trying to delete employee');
 		res.status(200).send('deleted');
 	}
 }
